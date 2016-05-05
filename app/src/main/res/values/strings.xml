@@ -13,4 +13,7 @@
     <string name="hello_fragment_4">Hello this is Nav Fragment 4</string>
     <string name="hello_fragment_5">Hello this is Nav Fragment 5</string>
     <string name="hello_fragment_6">Hello this is Nav Fragment 6</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

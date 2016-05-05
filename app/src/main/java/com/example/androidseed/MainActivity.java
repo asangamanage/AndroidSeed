@@ -11,9 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.androidseed.fragments.FlowersFragment;
 import com.example.androidseed.fragments.NavFragment1;
 import com.example.androidseed.fragments.NavFragment2;
 import com.example.androidseed.fragments.OnFragmentInteractionListener;
+import com.example.androidseed.utils.UI;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
@@ -71,20 +73,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.nav_menu1) {
             NavFragment1 navFragment1 = new NavFragment1();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.main_content, navFragment1);
-            fragmentTransaction.commit();
+            UI.showFragment(this, R.id.main_content, navFragment1);
         } else if (id == R.id.nav_menu2) {
             NavFragment2 navFragment2 = new NavFragment2();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.main_content, navFragment2);
-            fragmentTransaction.commit();
-
+            UI.showFragment(this, R.id.main_content, navFragment2);
         } else if (id == R.id.nav_menu3) {
-
+            FlowersFragment flowersFragment = new FlowersFragment();
+            UI.showFragment(this, R.id.main_content, flowersFragment);
         } else if (id == R.id.nav_menu4) {
 
         } else if (id == R.id.nav_menu5) {

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AndroidSeed</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_fragment_1">Hello this is Nav Fragment 1</string>
+    <string name="hello_fragment_2">Hello this is Nav Fragment 2</string>
+    <string name="hello_fragment_3">Hello this is Nav Fragment 3</string>
+    <string name="hello_fragment_4">Hello this is Nav Fragment 4</string>
+    <string name="hello_fragment_5">Hello this is Nav Fragment 5</string>
+    <string name="hello_fragment_6">Hello this is Nav Fragment 6</string>
+</resources>

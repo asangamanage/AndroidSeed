@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_menu1) {
+            // Change the UI util to not to create new fragements if it is already added to avoid memory leaks
             NavFragment1 navFragment1 = new NavFragment1();
             UI.showFragment(this, R.id.main_content, navFragment1);
         } else if (id == R.id.nav_menu2) {

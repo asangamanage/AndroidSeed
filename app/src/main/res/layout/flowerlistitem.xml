@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:baselineAligned="false"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/imgFlower"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:paddingStart="16dp"
+        android:src="@android:drawable/ic_notification_overlay" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingEnd="16dp"
+        android:layout_weight=".5"
+        android:paddingStart="16dp">
+
+        <TextView
+            android:id="@+id/txtFlowerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:text="English Roses"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+        <TextView
+            android:id="@+id/txtFlowerDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amazing red fagrance"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+    <CheckBox
+        android:id="@+id/checkFlower"
+        android:layout_width="156dp"
+        android:layout_weight=".5"
+        android:layout_height="match_parent"/>
+</LinearLayout>

@@ -1,7 +1,6 @@
 package com.example.androidseed.fragments;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,7 +14,7 @@ import android.widget.ListView;
 import com.example.androidseed.R;
 import com.example.androidseed.models.Flower;
 import com.example.androidseed.networking.FlowerService;
-import com.example.androidseed.networking.FlowerServiceImpl;
+import com.example.androidseed.networking.NewFlowerService;
 import com.example.androidseed.ui.FlowerListAdaptor;
 
 import java.io.IOException;
@@ -23,6 +22,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * http://services.hanselandpetal.com/feeds/flowers.json
@@ -37,7 +39,8 @@ public class FlowersFragment extends Fragment {
     @BindView(R.id.refreshButton)
     Button refreshButton;
 
-    FlowerService flowerServiceImpl = new FlowerServiceImpl();
+    // todo: Use a proper DI framework
+    FlowerService flowerServiceImpl = new NewFlowerService();
     private ArrayAdapter adapter;
     private FlowerListAdaptor flowerListAdaptor;
 
@@ -77,25 +80,17 @@ public class FlowersFragment extends Fragment {
     }
 
     public void onRefreshButtonPress() throws IOException {
-
-        // For simplicty AsyncTask is used. todo : retrofit
-        class FlowerTask extends AsyncTask<Void, Void, List<Flower>> {
+        // atm retrofit classes are leaking to fragments. todo : decouple fragments from retrofit 1) using RX java or 2) Event bus
+        flowerServiceImpl.getFlowers().enqueue(new Callback<List<Flower>>() {
             @Override
-            protected List<Flower> doInBackground(Void... params) {
-                try {
-                    return flowerServiceImpl.getFlowers();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
+            public void onResponse(Call<List<Flower>> call, Response<List<Flower>> response) {
+                setupUI(response.body());
             }
 
             @Override
-            protected void onPostExecute(List<Flower> flowers) {
-                setupUI(flowers);
+            public void onFailure(Call<List<Flower>> call, Throwable t) {
             }
-        }
-        new FlowerTask().execute();
+        });
     }
 
     private void setupUI(List<Flower> flowers) {

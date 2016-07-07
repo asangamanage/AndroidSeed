@@ -14,7 +14,7 @@ import android.widget.ListView;
 import com.example.androidseed.R;
 import com.example.androidseed.models.Flower;
 import com.example.androidseed.networking.FlowerService;
-import com.example.androidseed.networking.NewFlowerService;
+import com.example.androidseed.networking.FlowerServiceImpl;
 import com.example.androidseed.ui.FlowerListAdaptor;
 
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class FlowersFragment extends Fragment {
     Button refreshButton;
 
     // todo: Use a proper DI framework
-    FlowerService flowerServiceImpl = new NewFlowerService();
+    FlowerService flowerServiceImpl = new FlowerServiceImpl();
     private ArrayAdapter adapter;
     private FlowerListAdaptor flowerListAdaptor;
 

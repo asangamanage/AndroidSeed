@@ -6,7 +6,7 @@ import com.example.androidseed.networking.retrofit.FlowerRestService;
 import java.io.IOException;
 import java.util.List;
 
-import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -28,7 +28,7 @@ public class FlowerServiceImpl implements FlowerService {
     }
 
     @Override
-    public Call<List<Flower>> getFlowers() throws IOException {
-        return getRetroFitService().listFlowers();
+    public void getFlowers(Callback<List<Flower>> callback) throws IOException {
+        getRetroFitService().listFlowers().enqueue(callback);
     }
 }

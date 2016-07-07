@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -41,7 +40,6 @@ public class FlowersFragment extends Fragment {
 
     // todo: Use a proper DI framework
     FlowerService flowerServiceImpl = new FlowerServiceImpl();
-    private ArrayAdapter adapter;
     private FlowerListAdaptor flowerListAdaptor;
 
     public FlowersFragment() {
@@ -80,8 +78,8 @@ public class FlowersFragment extends Fragment {
     }
 
     public void onRefreshButtonPress() throws IOException {
-        // atm retrofit classes are leaking to fragments. todo : decouple fragments from retrofit 1) using RX java or 2) Event bus
-        flowerServiceImpl.getFlowers().enqueue(new Callback<List<Flower>>() {
+        // atm retrofit class Callback is leaking to fragments. todo : decouple fragments from retrofit 1) using RX java or 2) Event bus
+        flowerServiceImpl.getFlowers((new Callback<List<Flower>>() {
             @Override
             public void onResponse(Call<List<Flower>> call, Response<List<Flower>> response) {
                 setupUI(response.body());
@@ -90,7 +88,7 @@ public class FlowersFragment extends Fragment {
             @Override
             public void onFailure(Call<List<Flower>> call, Throwable t) {
             }
-        });
+        }));
     }
 
     private void setupUI(List<Flower> flowers) {
